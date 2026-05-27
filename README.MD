@@ -1,103 +1,53 @@
 # Lumina
 
-**Lumina** — современное десктопное приложение для управления задачами, привычками и повышения продуктивности. Все данные хранятся **локально** на вашем устройстве.
+**Lumina** — desktop application for task and habit management built with C# and Avalonia UI.
 
-## О проекте
+All data is stored locally on the user’s device (JSON-based storage).
 
-Lumina помогает структурировать день, вырабатывать полезные привычки и отслеживать прогресс с помощью удобного визуального интерфейса.
+---
 
-## Основные возможности
+## About the project
 
-- ✅ **Задачи** — создание, редактирование, выполнение и цветовая маркировка
-- 🔥 **Привычки** — отслеживание регулярных действий и streaks (серий)
-- 📅 **Календарь** — Day View (по часам) и Month View
-- ⚙️ **Настройки** — изменение количества колонок в дневном режиме
-- 🎨 **Кастомизация** — выбор цветов для задач и привычек
+Lumina helps structure daily routines, track habits, and manage tasks through a clean MVVM-based UI.
 
-### Функции в разработке
+---
 
-- 🧘 **Режим концентрации** — специальный фокусирующий режим (**в разработке**)
-- 🎨 **Полная кастомизация UI** — темы, цвета интерфейса и др. (**в разработке**)
+## Features
 
-## Технологии
+- ✅ Task management (create, edit, complete, color tagging)
+- 🔥 Habit tracking with streak system
+- 📅 Calendar views:
+  - Day view (hour-based schedule)
+  - Month view
+- ⚙️ Settings (UI configuration, layout options)
+- 🎨 Basic customization (colors for tasks and habits)
 
-- **C#**
-- **Avalonia UI** (кросс-платформенный)
-- **.NET 9**
-- **MVVM** + CommunityToolkit.Mvvm
-- Локальное хранение данных (JSON)
+---
 
+## Tech stack
+
+- C#
+- Avalonia UI
+- .NET 9
+- MVVM architecture (CommunityToolkit.Mvvm)
+- JSON local storage
+
+---
+
+## Project structure
+
+```text
 Lumina/
 ├── Lumina.sln
 ├── Lumina/
 │   ├── Lumina.csproj
 │   ├── App.axaml
-│   ├── App.axaml.cs
 │   ├── Program.cs
-│   ├── app.manifest
-│   │
 │   ├── Assets/
-│   │   └── avalonia-logo.ico
-│   │
 │   ├── Models/
-│   │   ├── TaskModel.cs
-│   │   ├── HabitModel.cs
-│   │   └── SettingsModel.cs
-│   │
 │   ├── Services/
-│   │   ├── TaskService.cs
-│   │   ├── HabitService.cs
-│   │   └── SettingsService.cs
-│   │
 │   ├── ViewModels/
-│   │   ├── MainWindowViewModel.cs
-│   │   ├── DayViewModel.cs
-│   │   ├── HourViewModel.cs
-│   │   ├── MonthViewModel.cs
-│   │   ├── DayMonthViewModel.cs
-│   │   ├── TaskMonthViewModel.cs
-│   │   ├── TaskViewModel.cs
-│   │   ├── HabitViewModel.cs
-│   │   ├── StreakViewModel.cs
-│   │   ├── SettingsViewModel.cs
-│   │   ├── ConcentrateViewModel.cs
-│   │   ├── EditTaskMessage.cs
-│   │   ├── EditHabitMessage.cs
-│   │   └── ViewModelBase.cs
-│   │
 │   ├── Views/
-│   │   ├── MainWindow.axaml
-│   │   ├── MainWindow.cs
-│   │   │
-│   │   ├── Day/
-│   │   │   ├── DayView.axaml
-│   │   │   └── HourView.axaml
-│   │   │
-│   │   ├── Month/
-│   │   │   ├── MonthView.axaml
-│   │   │   ├── DayMonthView.axaml
-│   │   │   └── TaskMonthView.axaml
-│   │   │
-│   │   ├── Habit/
-│   │   │   ├── StreakView.axaml
-│   │   │   ├── HabitView.axaml
-│   │   │   └── HabitEditView.axaml
-│   │   │
-│   │   ├── Components/
-│   │   │   ├── AddButtonView.axaml
-│   │   │   ├── TaskEditView.axaml
-│   │   │   └── TaskView.axaml
-│   │   │
-│   │   └── Pages/
-│   │       ├── ConcentrateView.axaml
-│   │       └── SettingsView.axaml
-│   │
 │   └── ViewLocator.cs
-│
 ├── README.md
-├── .gitignore
-└── data/    
-    Lumina.csproj
-    ├── tasks.json
-    ├── habits.json
-    └── settings.json               # Создаётся автоматически при запуске
+└── .gitignore
