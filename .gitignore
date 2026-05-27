@@ -1,26 +1,23 @@
-# Build & Binaries
-**/bin/
-**/obj/
-**/Debug/
-**/Release/
+# Build
+bin/
+obj/
 
-# IDE files
-.idea/
+# IDE
 .vs/
 .vscode/
+.idea/
 *.user
 *.DotSettings.user
 *.sln.DotSettings.user
+*.sln.iml
 
-# Local application data
-data/
-
-# Logs and temp
+# Logs
 *.log
 *.tmp
 
-# macOS
+# OS
 .DS_Store
 
-# Rider / ReSharper
-*.sln.iml
+# Local data
+data/*.log
+data/temp/
