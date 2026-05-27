@@ -1,0 +1,88 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Lumina.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Lumina.Views.Components.TaskEditView"
+             x:DataType="vm:TaskViewModel">
+    
+    
+    <Border Background="{Binding BackgroundColor}" Padding="20" CornerRadius="15" BorderBrush="#00BFFF" 
+            BorderThickness="1" BoxShadow="5 5 20 0 #80000000">
+        
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, *" ColumnSpacing="15">
+            
+            <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock Text="Название задания:" Foreground="White" Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Title, Mode=TwoWay}" 
+                            Watermark="Введите название задачи..." />
+                </StackPanel>
+                <Grid RowDefinitions="Auto, Auto" Margin="0,10,0,10" x:Name="ColorContainer">
+                    <TextBlock Grid.Row="0" Text="Цвет оформления:" Foreground="White" Margin="0,0,0,5"/>
+                    <Border Grid.Row="1" BorderBrush="White">
+                        <ColorPicker 
+                                     Color="{Binding SelectedColor, Mode=TwoWay}" 
+                                     HorizontalAlignment="Stretch" 
+                                     HorizontalContentAlignment="Stretch"
+                                     IsAlphaEnabled="False"
+                                     Width="{Binding #ColorContainer.Bounds.Width}"> 
+                        
+
+                                <TextBlock Text="{Binding BackgroundColor}" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Foreground="White"
+                                           FontWeight="SemiBold"/>
+                        </ColorPicker>
+                    </Border>
+                </Grid>
+            </StackPanel>
+            
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,20">
+                <TextBlock Text="Описание задания:" Foreground="White" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Description, Mode=TwoWay}" 
+                        Watermark="Введите описание задачи..." 
+                        AcceptsReturn="True" 
+                        TextWrapping="Wrap" 
+                        Height="100" />
+            
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1"  Spacing="10">
+                <TextBlock Text="Дата выполнения:" Foreground="White"/>
+                <DatePicker SelectedDate="{Binding DateOffset}" 
+                            HorizontalAlignment="Stretch"/>
+
+                <TextBlock Text="Время выполнения:" Foreground="White"/>
+                <TimePicker SelectedTime="{Binding TimeSpan}" 
+                            ClockIdentifier="24HourClock" 
+                            HorizontalAlignment="Stretch"/>
+            </StackPanel>
+            
+
+            <Button Grid.Row="2" Grid.Column="0" 
+                    Content="Отмена" 
+                    Background="#00BFFF" 
+                    Foreground="White"
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"
+                    Margin="0,0,5,0"
+                    Command="{Binding CloseEditCommand}"/>
+
+            <Button Grid.Row="2" Grid.Column="1" 
+                    Content="Сохранить" 
+                    Background="#00BFFF" 
+                    Foreground="White"
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"
+                    Margin="5,0,0,0"
+                    Command="{Binding SaveChangesCommand}"/>
+
+        </Grid>
+    </Border>
+
+
+</UserControl>
+             

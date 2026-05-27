@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Lumina.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" 
+             d:DesignHeight="450"
+             x:Class="Lumina.Views.Pages.ConcentrateView"
+             x:DataType="vm:ConcentrateViewModel">
+
+    <Grid Background="#1E1A3D">
+        
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Spacing="20">
+
+            <TextBlock Text="Режим концентрации"
+                       FontSize="28"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="В разработке"
+                       FontSize="15"
+                       Foreground="#FF9500"
+                       HorizontalAlignment="Center"
+                       FontWeight="Medium"/>
+
+
+        </StackPanel>
+        
+    </Grid>
+
+</UserControl>

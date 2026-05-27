@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Lumina.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="using:Lumina.Views.Pages" 
+             xmlns:components="using:Lumina.Views.Components"
+             x:Class="Lumina.Views.Pages.DayView"
+             x:DataType="vm:DayViewModel">
+
+    <Grid Grid.Column="1" RowDefinitions="30, *" Background="#1E1A3D">
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,40,*,40" VerticalAlignment="Center">
+            <ToggleButton Grid.Column="0" 
+                          IsChecked="{Binding ShowOnlyWithTasks}"
+                          Content="Фильтр" Foreground="White"
+                          Margin="5,0"/>
+            
+            <Button Grid.Column="1" 
+                    Content="&lt;" 
+                    Command="{Binding PreviousDayCommand}"
+                    Background="Transparent"
+                    Foreground="White"
+                    HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="{Binding CurrentDate, StringFormat='{}{0:dd MMMM yyyy}'}"
+                       Foreground="White" HorizontalAlignment="Center"/>
+            <Button Grid.Column="3" 
+                    Content="&gt;" 
+                    Command="{Binding NextDayCommand}"
+                    Background="Transparent"
+                    Foreground="White"
+                    HorizontalAlignment="Center"/>
+        </Grid>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
+                      PointerPressed="ScrollViewer_PointerPressed"
+                      PointerMoved="ScrollViewer_PointerMoved"
+                      PointerReleased="ScrollViewer_PointerReleased">
+            
+            <ItemsControl ItemsSource="{Binding FilteredHours}" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="vm:HourViewModel">
+                        <views:HourView />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+        </ScrollViewer>
+        
+        <components:AddButtonView Grid.RowSpan="2"/>
+        
+        <Panel Grid.RowSpan="2" IsVisible="{Binding IsVisible}">
+            <components:TaskEditView 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Width="600"
+                DataContext="{Binding SelectedTask}" />  
+        </Panel>
+    </Grid>
+
+</UserControl>

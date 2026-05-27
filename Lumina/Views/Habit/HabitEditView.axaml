@@ -1,0 +1,107 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Lumina.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Lumina.Views.Pages.HabitEditView" 
+             x:DataType="vm:HabitViewModel">
+    
+    
+    <Border Background="{Binding BackgroundColor}" Padding="20" CornerRadius="15" BorderBrush="#00BFFF" 
+            BorderThickness="1" BoxShadow="5 5 20 0 #80000000">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="*, *" ColumnSpacing="15">
+            <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                <TextBlock Text="Название:" Foreground="White" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Title}" Watermark="Введите название..."/>
+            </StackPanel>
+            
+            <StackPanel Spacing="5" Grid.Row="0" Grid.Column="1">
+                <TextBlock Text="Время:" Foreground="White"/>
+                <TimePicker SelectedTime="{Binding TimeOfDay}" 
+                            ClockIdentifier="24HourClock"
+                            HorizontalAlignment="Stretch"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,20">
+                <TextBlock Text="Описание:" Foreground="White" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Description}" AcceptsReturn="True" Height="80"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,0,15">
+                <TextBlock Text="Дата начала:" Foreground="White"/>
+                <DatePicker SelectedDate="{Binding DateOffset}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,0,15" 
+                  ColumnDefinitions="*,*" ColumnSpacing="5">
+                <StackPanel Grid.Column="0" Margin="0,0,0,15" >
+                    <TextBlock Text="Повтор (дней):" Foreground="White"/>
+                    <TextBox Text="{Binding PeriodicityDays}" HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1" Margin="0,0,0,15">
+                    <TextBlock Text="Длительность (дней):" Foreground="White"/>
+                    <TextBox Text="{Binding HabitDaysLong}" HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+            
+            <Grid Grid.Row="3" Grid.Column="0"  RowDefinitions="Auto, Auto" Margin="0,10,0,10" x:Name="ColorContainer">
+                <TextBlock Grid.Row="0" Text="Цвет оформления:" Foreground="White" Margin="0,0,0,5"/>
+                <Border Grid.Row="1" BorderBrush="White">
+                    <ColorPicker 
+                        Color="{Binding SelectedColor, Mode=TwoWay}" 
+                        HorizontalAlignment="Stretch" 
+                        HorizontalContentAlignment="Stretch"
+                        IsAlphaEnabled="False"
+                        Width="{Binding #ColorContainer.Bounds.Width}"> 
+                        
+
+                        <TextBlock Text="{Binding BackgroundColor}" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="White"
+                                   FontWeight="SemiBold"/>
+                    </ColorPicker>
+                </Border>
+            </Grid>
+            <!--<Grid Grid.Row="2" Grid.ColumnSpan="2" RowDefinitions="Auto, Auto" Margin="0,10" x:Name="ColorContainer">
+                <TextBlock Grid.Row="0" Text="Цвет оформления или фото:" Foreground="White" Margin="0,0,0,5"/>
+                <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
+                    <ColorPicker Color="{Binding SelectedColor, Mode=TwoWay}" 
+                                 HorizontalAlignment="Stretch" 
+                                 HorizontalContentAlignment="Stretch"
+                                 IsAlphaEnabled="False"
+                                 Width="{Binding #ColorContainer.Bounds.Width}"/>
+                    <Button Grid.Column="1" Content="📷 Фото" 
+                            Command="{Binding SelectImageAsync}" 
+                            Margin="5,0,0,0" VerticalAlignment="Stretch"/>
+                </Grid>
+            </Grid>-->
+
+            
+
+            <Button Grid.Row="4" Grid.Column="0" 
+                    Content="Отмена" 
+                    Background="#00BFFF" 
+                    Foreground="White"
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"
+                    Margin="0,0,5,0"
+                    Command="{Binding CloseEditCommand}"/>
+
+            <Button Grid.Row="4" Grid.Column="1" 
+                    Content="Сохранить" 
+                    Background="#00BFFF" 
+                    Foreground="White"
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"
+                    Margin="5,0,0,0"
+                    Command="{Binding SaveChangesCommand}"/>
+            
+        </Grid>
+    </Border>
+
+
+</UserControl>
+             

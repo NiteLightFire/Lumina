@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Lumina.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Lumina.Views.Pages.StreakView"
+             xmlns:views="using:Lumina.Views.Pages" 
+             xmlns:components="using:Lumina.Views.Components"
+             x:DataType="vm:StreakViewModel">
+    
+    <Grid RowDefinitions="50,*" Background="#1E1A3D" RowSpan="5">
+        <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#00BFFF">
+            <TextBlock Text="Привычки" FontSize="30" TextAlignment="Left" VerticalAlignment="Center" Margin="15, 0" Foreground="White"/>
+        </Border>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding Habits}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Margin="10, 5" Spacing="5"/> 
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="vm:HabitViewModel">
+                            <views:HabitView/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <components:AddButtonView Grid.Row="1"/>
+        
+        <Panel IsVisible="{Binding IsVisible}" Grid.RowSpan="2">
+            <views:HabitEditView 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Width="700"
+                DataContext="{Binding SelectedHabit}" />  
+        </Panel>
+    </Grid>
+    
+</UserControl>

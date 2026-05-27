@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Lumina.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Lumina.Views.Components.DayMonthView"
+             xmlns:views="using:Lumina.Views.Pages" 
+             >
+    
+    
+    <Button x:DataType="vm:DayMonthViewModel"
+            Command="{Binding $parent[views:MonthView].((vm:MonthViewModel)DataContext).OpenDayCommand}"
+            CommandParameter="{Binding}"
+            Background="Transparent"
+            BorderThickness="0"
+            Padding="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch">
+
+        <Button.Styles>
+            <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+            <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="RenderTransform" Value="none" />
+            </Style>
+        </Button.Styles>
+
+        <Border BorderThickness="1" BorderBrush="#00BFFF" Background="Transparent">
+            <Grid>
+                <Border Background="White"
+                        Width="10" 
+                        Height="10"
+                        CornerRadius="5"
+                        Margin="10"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        IsVisible="{Binding HasTasks}">
+                </Border>
+                <TextBlock Text="{Binding DayNumber}" Foreground="White" Opacity="0.15" FontSize="80" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+    </Button>
+
+</UserControl>
+             

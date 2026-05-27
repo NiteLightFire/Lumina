@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Lumina.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Lumina.Views.Pages.TaskView"
+             x:DataType="vm:TaskViewModel">    
+
+    <Border Padding="10" BorderThickness="1" 
+        BorderBrush="#FFFFFF" CornerRadius="15" Background="{Binding BackgroundColor}">
+        <Grid RowDefinitions="*, *, *, *" RowSpacing="2" ColumnDefinitions="*, Auto, Auto" ColumnSpacing="5"> 
+            <CheckBox Grid.Column="0" Content="{Binding Title}" 
+                      Grid.Row="0" Foreground="White" FontSize="15" 
+                      IsChecked="{Binding IsCompleted, Mode=TwoWay}"/>
+            
+            <TextBlock Grid.Column="1" Text="{Binding DateTime, StringFormat='{}{0:HH:mm}'}" 
+                      Grid.Row="0" Foreground="White" FontSize="15" 
+                      HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            
+            <Button Grid.Column="2" Grid.Row="0" 
+                    Command="{Binding DeleteCommand}"
+                    Background="Transparent" 
+                    BorderThickness="0"
+                    Padding="5" 
+                    VerticalAlignment="Center"
+                    ToolTip.Tip="Удалить задачу">
+                
+                <Button.Styles>
+                    <Style Selector="Button:pointerover">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                    <Style Selector="Button:pointerover Path">
+                        <Setter Property="Fill" Value="#FF6B6B"/> 
+                        <Setter Property="Opacity" Value="1"/>
+                    </Style>
+                </Button.Styles>
+                
+                <Path Fill="White" 
+                      Opacity="0.7" 
+                      Stretch="Uniform" 
+                      Width="14" Height="16"
+                      Data="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
+            </Button>
+
+
+            
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Description}" Grid.Row="2" 
+                       Foreground="White" FontSize="12" TextWrapping="Wrap" />
+            
+            <Button Grid.Column="0" Grid.Row="3" Content="Подробнее" Command="{Binding OpenModalCommand}"/>
+        </Grid>    
+    </Border>
+
+</UserControl>

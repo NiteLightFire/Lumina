@@ -1,0 +1,60 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Lumina.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:pages="clr-namespace:Lumina.Views.Pages"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+        x:Class="Lumina.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Lumina">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60" MinWidth="60" MaxWidth="200" /> 
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0"
+                Padding="0, 15"  Background="#141028">
+            <Grid Grid.Column="0" RowDefinitions="Auto, Auto, Auto, Auto, *, Auto" RowSpacing="10">
+                <Button Foreground="White" Command="{Binding ShowDay}" Grid.Row="0" HorizontalAlignment="Center" Content="&#x1F552;"/>
+                <Button Foreground="White" Command="{Binding ShowMonth}" Grid.Row="1" Content="&#x1F4C5;" HorizontalAlignment="Center"/>
+                <Button Foreground="White" Command="{Binding ShowStreak}" Grid.Row="2" Content="&#x1F525;" HorizontalAlignment="Center"/>
+                <Button Foreground="White" Command="{Binding ShowConcentrate}" Grid.Row="3" Content="&#x1F4D6;" HorizontalAlignment="Center"/>
+                <Button Foreground="White" Command="{Binding ShowSettings}" Grid.Row="5" Content="&#x2699;" HorizontalAlignment="Center" />
+            </Grid>
+        </Border>
+        
+        <GridSplitter Grid.Column="1" Width="2" 
+                      Background="#00BFFF" 
+                      ResizeBehavior="PreviousAndNext" />
+        
+        <ContentControl Grid.Column="2" Content="{Binding CurrentPage}">
+            <ContentControl.DataTemplates>
+                <DataTemplate DataType="{x:Type vm:DayViewModel}">
+                    <pages:DayView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:MonthViewModel}">
+                    <pages:MonthView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:StreakViewModel}">
+                    <pages:StreakView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:ConcentrateViewModel}">
+                    <pages:ConcentrateView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                    <pages:SettingsView/>
+                </DataTemplate>
+            </ContentControl.DataTemplates>
+        </ContentControl>
+    </Grid>
+
+</Window>

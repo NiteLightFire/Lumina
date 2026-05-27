@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Lumina.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="using:Lumina.Views.Pages" 
+             x:Class="Lumina.Views.Components.TaskMonthView"
+             x:DataType="vm:TaskMonthViewModel">
+    
+    
+    <Border Background="#1E1A3D" CornerRadius="10" BorderBrush="#00BFFF" BorderThickness="1" BoxShadow="5 5 20 0 #80000000">
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+                      PointerPressed="ScrollViewer_PointerPressed"
+                      PointerMoved="ScrollViewer_PointerMoved"
+                      PointerReleased="ScrollViewer_PointerReleased"> 
+            <ItemsControl ItemsSource="{Binding Tasks}"> 
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Margin="20" Spacing="5"/> 
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="vm:TaskViewModel">
+                        <views:TaskView/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl> 
+            
+        </ScrollViewer>
+        
+        <Button Command="{Binding $parent[views:MonthView].((vm:MonthViewModel)DataContext).CloseDayCommand}"   
+                Background="Transparent"
+                BorderThickness="0"
+                Padding="0"
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Cursor="Hand">
+            <Button.Styles>
+                <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Opacity" Value="0.7" />
+                </Style>
+            </Button.Styles>
+            
+            <Border Background="White"
+                    Width="15" 
+                    Height="15"
+                    CornerRadius="10">
+                <Path Data="M 0,0 L 5,5 M 5,0 L 0,5" 
+                      Stroke="Black" 
+                      StrokeThickness="1" 
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center"/>
+            </Border>
+        </Button>
+    </Grid>
+</Border>
+
+
+
+</UserControl>
+             
