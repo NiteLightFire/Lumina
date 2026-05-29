@@ -1,42 +1,56 @@
 # Lumina
 
-**Lumina** — desktop application for task and habit management built with C# and Avalonia UI.
+**Lumina** — десктопное приложение для управления задачами и привычками, написанное на C# с использованием Avalonia UI.
 
-All data is stored locally on the user’s device (JSON-based storage).
-
----
-
-## About the project
-
-Lumina helps structure daily routines, track habits, and manage tasks through a clean MVVM-based UI.
+Все данные хранятся локально на устройстве пользователя (JSON-файлы). Никаких аккаунтов, никакой синхронизации.
 
 ---
 
-## Features
+## О проекте
 
-- ✅ Task management (create, edit, complete, color tagging)
-- 🔥 Habit tracking with streak system
-- 📅 Calendar views:
-  - Day view (hour-based schedule)
-  - Month view
-- ⚙️ Settings (UI configuration, layout options)
-- 🎨 Basic customization (colors for tasks and habits)
+Lumina помогает структурировать распорядок дня, отслеживать привычки и управлять задачами через чистый интерфейс на основе архитектуры MVVM.
 
 ---
 
-## Tech stack
+## Возможности
 
-- C#
-- Avalonia UI
-- .NET 9
-- MVVM architecture (CommunityToolkit.Mvvm)
-- JSON local storage
+- ✅ **Задачи** — создание, редактирование, выполнение, цветовая маркировка
+- 🔥 **Привычки** — трекер с системой стриков (серий выполнения)
+- 📅 **Виды календаря:**
+  - Вид дня — почасовой таймлайн
+  - Вид месяца — полная сетка календаря
+- ⚙️ **Настройки** — конфигурация интерфейса, количество колонок в виде дня
+- 🎨 **Кастомизация** — выбор цвета для задач и привычек
 
 ---
 
-## Project structure
+## Стек технологий
 
-```text
+| | |
+|---|---|
+| Язык | C# |
+| UI-фреймворк | Avalonia UI 11.3 |
+| Платформа | .NET 9 |
+| Архитектура | MVVM (CommunityToolkit.Mvvm) |
+| Хранение данных | JSON (локально) |
+
+---
+
+## Запуск
+
+**Требования:** [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+
+```bash
+git clone https://github.com/NiteLightFire/Lumina.git
+cd Lumina/Lumina
+dotnet run
+```
+
+---
+
+## Структура проекта
+
+```
 Lumina/
 ├── Lumina.sln
 ├── Lumina/
@@ -51,3 +65,13 @@ Lumina/
 │   └── ViewLocator.cs
 ├── README.md
 └── .gitignore
+```
+
+---
+
+## Известные ограничения
+
+- Данные сохраняются рядом с исполняемым файлом (папка `data/`). 
+- Режим концентрации присутствует в интерфейсе, но пока не реализован.
+
+---
